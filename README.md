@@ -68,3 +68,25 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Database Schema
+
+This document outlines the schema of the database. Below are the tables and their respective columns:
+
+| Table Name             | Columns                                                                                      |
+|------------------------|----------------------------------------------------------------------------------------------|
+| PersonalDetails        | ID (PK), FirstName, MiddleName, LastName, FullNameAsPerAadharCard, TelNo, MobNo, EmailID, Gender, DateOfBirth, Age, MaritalStatus, IsCurrentAddressSameAsPermanent |
+| NationalityDetails    | ID (PK), PersonalDetailsID (FK -> PersonalDetails.ID), Citizenship, Nationality, PAN, WorkAuthorization |
+| AddressDetails         | ID (PK), PersonalDetailsID (FK -> PersonalDetails.ID), Country, Address, City, State, Pincode, ShippingAddress |
+| HealthDetails          | ID (PK), PersonalDetailsID (FK -> PersonalDetails.ID), CriticalIllness, BloodGroup |
+| ProfessionalReferences| ID (PK), PersonalDetailsID (FK -> PersonalDetails.ID), KnowSomeoneInOrg, Name, PhoneNumber, Address, KnownFrom, KnownTo, Capacity |
+| FamilyDetails          | ID (PK), PersonalDetailsID (FK -> PersonalDetails.ID), Name, Relation, Age, Occupation |
+| EducationDetails       | ID (PK), PersonalDetailsID (FK -> PersonalDetails.ID), EducationQualification, YearOfPassing, PercentageOrCGPA, University, Country, State |
+| AdditionalQualifications | ID (PK), PersonalDetailsID (FK -> PersonalDetails.ID), Title, Institute, PartTime, Duration, YearOfPassing, CertificateNumber |
+| Skills                 | ID (PK), PersonalDetailsID (FK -> PersonalDetails.ID), PrimarySkill, SecondarySkill, OtherSkills, DomainExpertise |
+| EmploymentHistory      | ID (PK), PersonalDetailsID (FK -> PersonalDetails.ID), HasWorkExperience, OrgName, StartDate, EndDate |
+| AdditionalInformation  | ID (PK), PersonalDetailsID (FK -> PersonalDetails.ID), CareerAchievements, Comments |
+| DocumentsUploaded      | ID (PK), PersonalDetailsID (FK -> PersonalDetails.ID), S3BucketLink |
