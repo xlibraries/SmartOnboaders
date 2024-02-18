@@ -1,86 +1,65 @@
-import json
+import os
+import boto3
+import uuid
+import zipfile
+import logging
+from io import BytesIO
 import base64
-import boto3
+import datetime
+
+# Configure logging
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+
+s3 = boto3.client('s3')
+
+def extract_zip_to_s3(zip_content, bucket_name, folder_name):
+    # Create a BytesIO object to read the zip file content
+    zip_buffer = BytesIO(zip_content)
+
+    # Extract the zip file contents
+    with zipfile.ZipFile(zip_buffer, 'r') as zip_ref:
+        for file_info in zip_ref.infolist():
+            # Read the file content
+            file_content = zip_ref.read(file_info.filename)
+            
+            # Upload the file content to S3
+            s3.put_object(Body=file_content, Bucket=bucket_name, Key=f"{folder_name}/{file_info.filename}")
+            logger.info(f"Uploaded {file_info.filename} to S3 folder: {folder_name}")
 
 def lambda_handler(event, context):
-    if not event or 'body' not in event or not event['body']:
-        return {
-            'statusCode': 400,
-            'body': json.dumps('No data provided')
-        }
-
     try:
-        # Decode the base64 string
-        decoded_body = base64.b64decode(event['body']).decode('utf-8')
-        # Parse the decoded string as JSON
-        files = json.loads(decoded_body)
-    except (json.JSONDecodeError, base64.binascii.Error) as e:
+        # Get the bucket name from environment variables
+        bucket_name = 'uploaded-files-semicolon'
+        
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M")
+        
+        # Generate a random UUID for the folder
+        uuid_generate = str(uuid.uuid4().hex)[:8]
+        folder_name = f"{timestamp}-{uuid_generate}"
+
+        # Extract the zip file contents and upload them to S3
+        zip_content = event['body'].encode('utf-8')
+        print('event', zip_content)
+        zip_file_base64 = event['body']
+        zip_file_bytes = base64.b64decode(zip_file_base64)
+        print('zip_file_bytes', zip_file_bytes)
+        extract_zip_to_s3(zip_file_bytes, bucket_name, folder_name)
+
+        # Return a success response
         return {
-            'statusCode': 400,
-            'body': json.dumps(f'Invalid format: {str(e)}')
+            'statusCode': 200,
+            'body': f'Zip file extracted and files uploaded successfully to S3 in folder: {folder_name}'
+        }
+    except Exception as e:
+        # Log the error
+        logger.error(f"Error: {str(e)}")
+        
+        # Return an error response
+        return {
+            'statusCode': 500,
+            'body': 'Internal server error'
         }
 
-    # Create an S3 client
-    s3 = boto3.client('s3')
 
-    # Process the files
-    for file in files:
-        file_name = file['name']
-        file_content = base64.b64decode(file['content'])
 
-        # Upload the file content to S3
-        try:
-            s3.put_object(Bucket='textract01aks', Key=file_name, Body=file_content)
-        except Exception as e:
-            return {
-                'statusCode': 500,
-                'body': json.dumps(f'Error uploading file to S3: {str(e)}')
-            }
-
-    return {
-        'statusCode': 200,
-        'body': json.dumps('Files processed successfully')
-    }
-    
-    
-    
-import json
-import boto3
-from botocore.exceptions import NoCredentialsError
-
-def lambda_handler(event, context):
-    print('Received event:', event)
-    s3 = boto3.client('s3')
-    bucket_name = 'textract01aks'
-
-    if not event['body']:
-        return {
-            'statusCode': 400,
-            'body': json.dumps('No files provided')
-        }
-
-    try:
-        files = event['body']  # Parse the JSON string into a Python object
-    except json.JSONDecodeError:
-        return {
-            'statusCode': 400,
-            'body': json.dumps('Invalid JSON format')
-        }
-
-    for file in files:
-        file_content = file['content']
-        file_name = file['name']
-        file_path = f'{file_name}/{file_name}'  # This creates a "folder" with the file name
-
-        try:
-            s3_response = s3.put_object(Body=file_content, Bucket=bucket_name, Key=file_path)
-        except NoCredentialsError:
-            return {
-                'statusCode': 403,
-                'body': json.dumps('Credentials not available')
-            }
-
-    return {
-        'statusCode': 200,
-        'body': json.dumps('Files uploaded successfully')
-    }
