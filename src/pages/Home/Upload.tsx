@@ -20,7 +20,7 @@ const UploadPage: React.FC = () => {
   return (
     <div className="upload-page">
       <Upload
-        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+        action="https://l293mx5b2g.execute-api.us-west-2.amazonaws.com/default/post_api"
         onChange={handleUpload}
         fileList={fileList}
       >

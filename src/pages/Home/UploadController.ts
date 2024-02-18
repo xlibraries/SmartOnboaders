@@ -1,10 +1,10 @@
-import AWS from 'aws-sdk';
+import AWS from '../../server/server';
 
 const UploadController = {
   handleFileUpload: async (file: File) => {
     const s3 = new AWS.S3();
     const params = {
-      Bucket: 'your-bucket-name',
+      Bucket: 'textract01aks',
       Key: file.name,
       Body: file
     };
