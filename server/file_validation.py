@@ -5,11 +5,11 @@ import os
 unique_doc_keywords = {
     "10th Marksheet": ["SECONDARY SCHOOL CERTIFICATE EXAMINATION"],
     "12th Marksheet": ["CENTRAL BOARD OF SECONDARY EDUCATION"],
-    "Aadhar Card": ["Unique Identification Authority of India", "Government of India", "Address"],
-    "PAN Card": ["Permanent Account Number", "Income Tax Department", "Government of India"],
-    "Resume": ["Resume", "Contact"],
-    "Passport": ["Passport", "Government of India"],
-    "Salary Slip": ["Basic", "Salary"]
+    "Aadhar Card": ["UNIQUE IDENTIFICATION AUTHORITY OF INDIA", "GOVERNMENT OF INDIA", "ADDRESS"],
+    "PAN Card": ["PERMANENT ACCOUNT NUMBER", "INCOME TAX DEPARTMENT", "GOVERNMENT OF INDIA"],
+    "Resume": ["RESUME", "CONTACT"],
+    "Passport": ["PASSPORT", "GOVERNMENT OF INDIA"],
+    "Salary Slip": ["BASIC", "SALARY"]
 }
 
 
@@ -35,7 +35,8 @@ def check_all_documents_str(doc_list: list[str]):
         "Salary Slip": "Not Present"
     }
     for doc in doc_list:
-        docs_present = check_document(doc, docs_present)
+        doc_in_upper = doc.upper()
+        docs_present = check_document(doc_in_upper, docs_present)
 
     return docs_present
 
@@ -55,5 +56,5 @@ def check_all_documents_in_folder(folder_path: str):
 
 
 # Call the main function to check all documents
-# print(check_all_documents(doc_list=["CENTRAL BOARD OF SECONDARY EDUCATION",
-# "Unique Identification Authority of India Government of India Address",
+# print(check_all_documents_str(doc_list=["CENTral bOARD OF SECONDARY EDUCATION",
+# "Unique Identification Authority of India Government of India Address"]))
