@@ -1,3 +1,6 @@
+import os
+
+
 # Define keywords for each document
 unique_doc_keywords = {
     "10th Marksheet": ["SECONDARY SCHOOL CERTIFICATE EXAMINATION"],
@@ -6,7 +9,7 @@ unique_doc_keywords = {
     "PAN Card": ["Permanent Account Number", "Income Tax Department", "Government of India"],
     "Resume": ["Resume", "Contact"],
     "Passport": ["Passport", "Government of India"],
-    "Salary Slip": ["Salary Slip", "Payslip"]
+    "Salary Slip": ["Basic", "Salary"]
 }
 
 
@@ -21,7 +24,7 @@ def check_document(doc, docs_present):
 
 
 # Main function to check all documents
-def check_all_documents(doc_list: list[str]):
+def check_all_documents_str(doc_list: list[str]):
     docs_present = {
         "10th Marksheet": "Not Present",
         "12th Marksheet": "Not Present",
@@ -35,6 +38,21 @@ def check_all_documents(doc_list: list[str]):
         docs_present = check_document(doc, docs_present)
 
     return docs_present
+
+
+def check_all_documents_in_folder(folder_path: str):
+    # If docs are present in a folder, provide folder path as input to this func
+    file_contents = []
+    for filename in os.listdir(folder_path):
+        if filename.endswith('.txt'):
+            file_path = os.path.join(folder_path, filename)
+            with open(file_path, 'r') as file:
+                content = file.read()
+                file_contents.append(content)
+
+    docs_present = check_all_documents_str(doc_list=file_contents)
+    return docs_present
+
 
 # Call the main function to check all documents
 # print(check_all_documents(doc_list=["CENTRAL BOARD OF SECONDARY EDUCATION",
