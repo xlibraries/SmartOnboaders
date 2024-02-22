@@ -1,0 +1,20 @@
+.personal-details-form {
+  /* Add styles for the form here */
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.personal-details-section {
+  /* Add styles for each section here */
+  margin-bottom: 20px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+}
+
+.personal-details-item {
+  /* Add styles for each form item here */
+  margin-bottom: 10px;
+}
