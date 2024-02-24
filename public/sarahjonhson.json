@@ -1,0 +1,124 @@
+{
+  "PersonalDetails": [
+    {
+      "ID": 2,
+      "FirstName": "Sarah",
+      "MiddleName": "Jane",
+      "LastName": "Johnson",
+      "FullNameAsPerAadharCard": "Sarah Jane Johnson",
+      "TelNo": "021-98765432",
+      "MobNo": "9876543210",
+      "EmailID": "sarah.johnson@example.com",
+      "Gender": "Female",
+      "DateOfBirth": "1995-03-20",
+      "Age": 29,
+      "MaritalStatus": "Single",
+      "IsCurrentAddressSameAsPermanent": true
+    }
+  ],
+  "NationalityDetails": [
+    {
+      "ID": 2,
+      "PersonalDetailsID": 2,
+      "Citizenship": "Canadian",
+      "Nationality": "Canadian",
+      "PAN": "LMNOP6789Q",
+      "WorkAuthorization": "Permanent resident"
+    }
+  ],
+  "AddressDetails": [
+    {
+      "ID": 2,
+      "PersonalDetailsID": 2,
+      "Country": "Canada",
+      "Address": "789 Maple Avenue",
+      "City": "Toronto",
+      "State": "Ontario",
+      "Pincode": "M1R 2T4",
+      "ShippingAddress": "Same as permanent address"
+    }
+  ],
+  "HealthDetails": [
+    {
+      "ID": 2,
+      "PersonalDetailsID": 2,
+      "CriticalIllness": "None",
+      "BloodGroup": "A-"
+    }
+  ],
+  "ProfessionalReferences": [
+    {
+      "ID": 2,
+      "PersonalDetailsID": 2,
+      "KnowSomeoneInOrg": true,
+      "Name": "Michael Brown",
+      "PhoneNumber": "999-1234567",
+      "Address": "123 Oak Street",
+      "KnownFrom": "University",
+      "KnownTo": "Present",
+      "Capacity": "Professor"
+    }
+  ],
+  "FamilyDetails": [
+    {
+      "ID": 2,
+      "PersonalDetailsID": 2,
+      "Name": "Emily Johnson",
+      "Relation": "Cousin",
+      "Age": 25,
+      "Occupation": "Software Engineer"
+    }
+  ],
+  "EducationDetails": [
+    {
+      "ID": 2,
+      "PersonalDetailsID": 2,
+      "EducationQualification": "Bachelor's in Economics",
+      "YearOfPassing": 2017,
+      "PercentageOrCGPA": 3.8,
+      "University": "University of Toronto",
+      "Country": "Canada",
+      "State": "Ontario"
+    }
+  ],
+  "AdditionalQualifications": [
+    {
+      "ID": 2,
+      "PersonalDetailsID": 2,
+      "Title": "Certified Financial Analyst",
+      "Institute": "Chartered Financial Analyst Institute",
+      "PartTime": false,
+      "Duration": "6 months",
+      "YearOfPassing": 2018,
+      "CertificateNumber": "CFA98765"
+    }
+  ],
+  "Skills": [
+    {
+      "ID": 2,
+      "PersonalDetailsID": 2,
+      "PrimarySkill": "Financial Analysis",
+      "SecondarySkill": "Data Visualization",
+      "OtherSkills": "Risk Management, Investment Banking",
+      "DomainExpertise": "Finance"
+    }
+  ],
+  "EmploymentHistory": [
+    {
+      "ID": 2,
+      "PersonalDetailsID": 2,
+      "HasWorkExperience": true,
+      "OrgName": "XYZ Investments",
+      "StartDate": "2018-01-15",
+      "EndDate": "2023-05-31"
+    }
+  ],
+  "AdditionalInformation": [
+    {
+      "ID": 2,
+      "PersonalDetailsID": 2,
+      "CareerAchievements": "Managed successful IPO launch",
+      "Comments": "Strong analytical skills"
+    }
+  ]
+}
