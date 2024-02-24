@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import boto3
 import zipfile
 import os
@@ -24,6 +24,11 @@ def generate_unique_folder_id():
     unique_string = f'{timestamp} {unique_id}'
 
     return unique_string
+
+
+@app.route('/status', methods=['GET'])
+def status():
+    return jsonify({"status": "OK", "message": "Service is running"}), 200
 
 
 @app.route('/upload', methods=['POST'])
