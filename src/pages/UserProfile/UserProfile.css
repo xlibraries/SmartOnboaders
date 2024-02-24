@@ -1,0 +1,33 @@
+/* App.css */
+.logo {
+    width: 120px;
+    height: 31px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px 28px 16px 0;
+    float: left;
+  }
+  
+  .header {
+    background: #001529;
+    padding: 0;
+  }
+  
+  .site-layout-background {
+    background: #fff;
+  }
+  
+  .avatar-section {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .info-section {
+    margin-bottom: 20px;
+  }
+  
+  .progress-section {
+    position: absolute;
+    right: 50px;
+    top: 50px;
+  }
+  
