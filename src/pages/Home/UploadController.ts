@@ -4,7 +4,7 @@ const UploadController = {
   handleFileUpload: async (file: File) => {
     const s3 = new AWS.S3();
     const params = {
-      Bucket: 'textract01aks',
+      Bucket: 'testing-zip-upload',
       Key: file.name,
       Body: file
     };
