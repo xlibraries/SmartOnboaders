@@ -16,16 +16,25 @@ const AuthPage: React.FC = () => {
     return (
         <div className="auth-page">
             <Card className="auth-card">
-                <Title level={2}>{userModel.isLogin ? 'Login' : 'Sign Up'}</Title>
-                <div className="auth-fields">
-                    {!userModel.isLogin && <Input value={userModel.username} onChange={(e) => setUserModel({ ...userModel, username: e.target.value })} placeholder="Username" />}
-                    <Input className="auth-field" type="email" value={userModel.email} onChange={(e) => setUserModel({ ...userModel, email: e.target.value })} placeholder="Email" />
-                    <Input.Password className="auth-field" value={userModel.password} onChange={(e) => setUserModel({ ...userModel, password: e.target.value })} placeholder="Password" />
-                    {!userModel.isLogin && <Input.Password className="auth-field" value={userModel.confirmPassword} onChange={(e) => setUserModel({ ...userModel, confirmPassword: e.target.value })} placeholder="Confirm Password" />}
-                </div>
-                <div className="auth-buttons">
-                    <Button className="auth-button" type="primary" onClick={() => AuthController.handleAuth(userModel, navigate)}>{userModel.isLogin ? 'Login' : 'Sign Up'}</Button>
-                    <Button className="auth-button" type="default" onClick={() => setUserModel({ ...userModel, isLogin: !userModel.isLogin })}>{userModel.isLogin ? 'Go to Sign Up' : 'Go to Login'}</Button>
+                <div className="auth-content">
+                    <div className="auth-left">
+                        <img src="/logo.png" alt="Logo" className="logo" />
+                        <hr className='welcome-line' />
+                        <Title className='welcome-text'>Welcome</Title>
+                    </div>
+                    <div className="auth-right">
+                        <Title className='auth-title' level={2}>{userModel.isLogin ? 'Login' : 'Sign Up'}</Title>
+                        <div className="auth-fields">
+                            {!userModel.isLogin && <Input value={userModel.username} onChange={(e) => setUserModel({ ...userModel, username: e.target.value })} placeholder="Username" />}
+                            <Input className="auth-field" type="email" value={userModel.email} onChange={(e) => setUserModel({ ...userModel, email: e.target.value })} placeholder="Email" />
+                            <Input.Password className="auth-field" value={userModel.password} onChange={(e) => setUserModel({ ...userModel, password: e.target.value })} placeholder="Password" />
+                            {!userModel.isLogin && <Input.Password className="auth-field" value={userModel.confirmPassword} onChange={(e) => setUserModel({ ...userModel, confirmPassword: e.target.value })} placeholder="Confirm Password" />}
+                        </div>
+                        <div className="auth-buttons">
+                            <Button className="auth-button" type="primary" onClick={() => AuthController.handleAuth(userModel, navigate)}>{userModel.isLogin ? 'Login' : 'Sign Up'}</Button>
+                            <Button className="auth-button" type="default" onClick={() => setUserModel({ ...userModel, isLogin: !userModel.isLogin })}>{userModel.isLogin ? 'Go to Sign Up' : 'Go to Login'}</Button>
+                        </div>
+                    </div>
                 </div>
             </Card>
         </div>

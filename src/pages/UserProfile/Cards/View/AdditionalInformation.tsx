@@ -4,7 +4,6 @@ import '../Style/AdditionalInformation.css';
 const AdditionalInformation: React.FC = () => {
   // Sample data
   const [data, setData] = useState({
-    "ID": 1,
     "CareerAchievements": "Led successful ERP implementation",
     "Comments": "Strong problem-solving skills"
   });
