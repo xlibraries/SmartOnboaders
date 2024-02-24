@@ -1,37 +1,78 @@
-// AdditionalQualifications.tsx
-import React from 'react';
+import React, { useState } from 'react';
 import '../Style/AdditionalQualifications.css';
 
-const AdditionalQualifications = () => {
-  // Replace this with actual data
-  const data = {
-    "FirstName": "Rajesh",
-    "MiddleName": "Kumar",
-    "LastName": "Verma",
-    "FullNameAsPerAadharCard": "Rajesh Kumar Verma",
-    "TelNo": "011-12345678",
-    "MobNo": "9876543210",
-    "EmailID": "rajesh.verma@example.com",
-    "Gender": "Male",
-    "DateOfBirth": "1988-09-10",
-    "Age": 35,
-    "MaritalStatus": "Married",
-    "IsCurrentAddressSameAsPermanent": true
+const AdditionalQualifications: React.FC = () => {
+  // Sample data
+  const [data, setData] = useState({
+    "ID": 1,
+    "Title": "Certified Agile Practitioner",
+    "Institute": "Project Management Institute",
+    "Duration": "5 days",
+    "YearOfPassing": 2014,
+    "CertificateNumber": "CAP56789"
+  });
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setData({ ...data, [event.target.name]: event.target.value });
+  };
+
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setData({ ...data, [event.target.name]: event.target.checked });
   };
 
   return (
     <div className="personal-details">
-      <h2>Personal Details</h2>
-      <p>Name: {data.FirstName} {data.MiddleName} {data.LastName}</p>
-      <p>Full Name As Per Aadhar Card: {data.FullNameAsPerAadharCard}</p>
-      <p>Tel No: {data.TelNo}</p>
-      <p>Mob No: {data.MobNo}</p>
-      <p>Email ID: {data.EmailID}</p>
-      <p>Gender: {data.Gender}</p>
-      <p>Date Of Birth: {data.DateOfBirth}</p>
-      <p>Age: {data.Age}</p>
-      <p>Marital Status: {data.MaritalStatus}</p>
-      <p>Is Current Address Same As Permanent: {data.IsCurrentAddressSameAsPermanent ? 'Yes' : 'No'}</p>
+      <h2 className='label'>Additional Qualification</h2>
+      <div className="form-item">
+        <label>Title:</label>
+        <input 
+          type="text" 
+          name="Title" 
+          value={data.Title} 
+          onChange={handleChange} 
+          className="input-field" 
+        />
+      </div>
+      <div className="form-item">
+        <label>Institute:</label>
+        <input 
+          type="text" 
+          name="Institute" 
+          value={data.Institute} 
+          onChange={handleChange} 
+          className="input-field" 
+        />
+      </div>
+      <div className="form-item">
+        <label>Duration:</label>
+        <input 
+          type="text" 
+          name="Duration" 
+          value={data.Duration} 
+          onChange={handleChange} 
+          className="input-field" 
+        />
+      </div>
+      <div className="form-item">
+        <label>Year Of Passing:</label>
+        <input 
+          type="integer" 
+          name="YearOfPassing" 
+          value={data.YearOfPassing} 
+          onChange={handleChange} 
+          className="input-field" 
+        />
+      </div>
+      <div className="form-item">
+        <label>Certificate Number:</label>
+        <input 
+          type="text" 
+          name="CertificateNumber" 
+          value={data.CertificateNumber} 
+          onChange={handleChange} 
+          className="input-field" 
+        />
+      </div>
     </div>
   );
 };

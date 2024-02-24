@@ -1,39 +1,57 @@
-// EmploymentHistory.tsx
-import React from 'react';
-import '../Style/EmploymentHistory.css';
+import React, { useState } from 'react';
+import '../Style/PersonalDetails.css';
 
-const EmploymentHistory = () => {
-  // Replace this with actual data
-  const data = {
-    "FirstName": "Rajesh",
-    "MiddleName": "Kumar",
-    "LastName": "Verma",
-    "FullNameAsPerAadharCard": "Rajesh Kumar Verma",
-    "TelNo": "011-12345678",
-    "MobNo": "9876543210",
-    "EmailID": "rajesh.verma@example.com",
-    "Gender": "Male",
-    "DateOfBirth": "1988-09-10",
-    "Age": 35,
-    "MaritalStatus": "Married",
-    "IsCurrentAddressSameAsPermanent": true
+const PersonalDetails: React.FC = () => {
+  // Sample data
+  const [data, setData] = useState({
+    "OrgName": "Tech Solutions Pvt. Ltd.",
+    "StartDate": "2010-07-01",
+    "EndDate": "2022-12-31"
+  });
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setData({ ...data, [event.target.name]: event.target.value });
+  };
+
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setData({ ...data, [event.target.name]: event.target.checked });
   };
 
   return (
     <div className="personal-details">
-      <h2>Personal Details</h2>
-      <p>Name: {data.FirstName} {data.MiddleName} {data.LastName}</p>
-      <p>Full Name As Per Aadhar Card: {data.FullNameAsPerAadharCard}</p>
-      <p>Tel No: {data.TelNo}</p>
-      <p>Mob No: {data.MobNo}</p>
-      <p>Email ID: {data.EmailID}</p>
-      <p>Gender: {data.Gender}</p>
-      <p>Date Of Birth: {data.DateOfBirth}</p>
-      <p>Age: {data.Age}</p>
-      <p>Marital Status: {data.MaritalStatus}</p>
-      <p>Is Current Address Same As Permanent: {data.IsCurrentAddressSameAsPermanent ? 'Yes' : 'No'}</p>
+      <h2 className='label'>Employment History</h2>
+      <div className="form-item">
+        <label>Orginazation Name:</label>
+        <input 
+          type="text" 
+          name="OrgName" 
+          value={data.OrgName} 
+          onChange={handleChange} 
+          className="input-field" 
+        />
+      </div>
+      <div className="form-item">
+        <label>Start Date:</label>
+        <input 
+          type="text" 
+          name="StartDate" 
+          value={data.StartDate} 
+          onChange={handleChange} 
+          className="input-field" 
+        />
+      </div>
+      <div className="form-item">
+        <label>End Date:</label>
+        <input 
+          type="text" 
+          name="EndDate" 
+          value={data.EndDate} 
+          onChange={handleChange} 
+          className="input-field" 
+        />
+      </div>
     </div>
   );
 };
 
-export default EmploymentHistory;
+export default PersonalDetails;

@@ -8,7 +8,6 @@ const PersonalDetails: React.FC = () => {
     "MiddleName": "Kumar",
     "LastName": "Verma",
     "FullNameAsPerAadharCard": "Rajesh Kumar Verma",
-    "TelNo": "011-12345678",
     "MobNo": "9876543210",
     "EmailID": "rajesh.verma@example.com",
     "Gender": "Male",
@@ -35,16 +34,6 @@ const PersonalDetails: React.FC = () => {
           type="text" 
           name="FullNameAsPerAadharCard" 
           value={data.FullNameAsPerAadharCard} 
-          onChange={handleChange} 
-          className="input-field" 
-        />
-      </div>
-      <div className="form-item">
-        <label>Telephone Number:</label>
-        <input 
-          type="text" 
-          name="TelNo" 
-          value={data.TelNo} 
           onChange={handleChange} 
           className="input-field" 
         />
@@ -107,16 +96,6 @@ const PersonalDetails: React.FC = () => {
           value={data.MaritalStatus} 
           onChange={handleChange} 
           className="input-field" 
-        />
-      </div>
-      <div className="form-item">
-        <label>Is Current Address Same As Permanent:</label>
-        <input 
-          type="checkbox" 
-          name="IsCurrentAddressSameAsPermanent" 
-          checked={data.IsCurrentAddressSameAsPermanent} 
-          onChange={handleCheckboxChange} 
-          className="checkbox-field" 
         />
       </div>
     </div>

@@ -2,18 +2,24 @@
 .logo {
   width: 120px;
   height: 31px;
-  background: rgba(255, 255, 255, 0.2);
+  /* background: #FF6005; */
   margin: 16px 28px 16px 0;
   float: left;
 }
 
 .header {
-  background: #001529;
-  padding: 0;
+  background: #FF6005;
+  padding: 40px;
+  margin-bottom: 50px;
+}
+
+.slider {
+  background: #FF6005;
+  padding: 40px;
 }
 
 .site-layout-background {
-  background: #fff;
+  background: #ffffff;
 }
 
 .avatar-section {
@@ -23,10 +29,4 @@
 
 .info-section {
   margin-bottom: 20px;
-}
-
-.progress-section {
-  position: absolute;
-  right: 50px;
-  top: 50px;
 }

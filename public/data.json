@@ -2,17 +2,12 @@
     "PersonalDetails": [
       {
         "ID": 1,
-        "FirstName": "Rajesh",
-        "MiddleName": "Kumar",
-        "LastName": "Verma",
         "FullNameAsPerAadharCard": "Rajesh Kumar Verma",
-        "TelNo": "011-12345678",
         "MobNo": "9876543210",
         "EmailID": "rajesh.verma@example.com",
         "Gender": "Male",
         "DateOfBirth": "1988-09-10",
         "Age": 35,
-        "MaritalStatus": "Married",
         "IsCurrentAddressSameAsPermanent": true
       }
     ],
@@ -34,39 +29,16 @@
         "Address": "456 Nehru Nagar",
         "City": "New Delhi",
         "State": "Delhi",
-        "Pincode": "110001",
-        "ShippingAddress": "Same as permanent address"
-      }
-    ],
-    "HealthDetails": [
-      {
-        "ID": 1,
-        "PersonalDetailsID": 1,
-        "CriticalIllness": "None",
-        "BloodGroup": "B+"
+        "Pincode": "110001"
       }
     ],
     "ProfessionalReferences": [
       {
         "ID": 1,
         "PersonalDetailsID": 1,
-        "KnowSomeoneInOrg": true,
         "Name": "Sunita Sharma",
         "PhoneNumber": "999-9876543",
-        "Address": "789 Ashok Vihar",
-        "KnownFrom": "Previous workplace",
-        "KnownTo": "Current date",
-        "Capacity": "Manager"
-      }
-    ],
-    "FamilyDetails": [
-      {
-        "ID": 1,
-        "PersonalDetailsID": 1,
-        "Name": "Priya Verma",
-        "Relation": "Spouse",
-        "Age": 32,
-        "Occupation": "Teacher"
+        "EmailID": "sunita.sharma@persistent.com"
       }
     ],
     "EducationDetails": [
@@ -87,7 +59,6 @@
         "PersonalDetailsID": 1,
         "Title": "Certified Agile Practitioner",
         "Institute": "Project Management Institute",
-        "PartTime": false,
         "Duration": "5 days",
         "YearOfPassing": 2014,
         "CertificateNumber": "CAP56789"
@@ -107,7 +78,6 @@
       {
         "ID": 1,
         "PersonalDetailsID": 1,
-        "HasWorkExperience": true,
         "OrgName": "Tech Solutions Pvt. Ltd.",
         "StartDate": "2010-07-01",
         "EndDate": "2022-12-31"
