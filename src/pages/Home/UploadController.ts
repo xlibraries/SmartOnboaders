@@ -1,20 +1,24 @@
-import AWS from '../../server/server';
+import axios from 'axios'; // Import Axios (make sure it's installed)
 
 const UploadController = {
+  // Async function to handle file upload
   handleFileUpload: async (file: File) => {
-    const s3 = new AWS.S3();
-    const params = {
-      Bucket: 'testing-zip-upload',
-      Key: file.name,
-      Body: file
-    };
     try {
-      const response = await s3.upload(params).promise();
-      console.log(`File uploaded successfully at ${response.Location}`);
+      const formData = new FormData();
+      formData.append('file', file);
+
+      // Replace with your actual Flask API endpoint
+      const response = await axios.post('/upload', formData, {
+        headers: {
+          'Content-Type': 'application/octet-stream', // Set the content type
+        },
+      });
+
+      console.log('File uploaded successfully:', response.data);
     } catch (error) {
-      console.log('Error uploading file: ', error);
+      console.error('Error uploading file:', error);
     }
-  }
+  },
 };
 
 export default UploadController;

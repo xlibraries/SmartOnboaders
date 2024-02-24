@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import { Button, Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
-import UploadController from './UploadController';
-import './UploadPage.css';
-import { UploadChangeParam } from 'antd/lib/upload';
-import { UploadFile } from 'antd/lib/upload/interface';
+import UploadController from './UploadController'; // Import the UploadController
 
 const UploadPage: React.FC = () => {
-  const [fileList, setFileList] = useState<UploadFile<any>[]>([]);
+  const [fileList, setFileList] = useState<any[]>([]);
 
-  const handleUpload = ({ fileList }: UploadChangeParam) => {
-    console.log(fileList);
-    setFileList(fileList);
+  // Handle file upload
+  const handleUpload = ({ fileList }: any) => {
+    setFileList(fileList.slice(-1)); // Keep only the last uploaded file
     if (fileList.length > 0 && fileList[0].originFileObj) {
+      // Call the handleFileUpload method from UploadController
       UploadController.handleFileUpload(fileList[0].originFileObj);
     }
   };
@@ -20,11 +18,13 @@ const UploadPage: React.FC = () => {
   return (
     <div className="upload-page">
       <Upload
-        action="https://l293mx5b2g.execute-api.us-west-2.amazonaws.com/default/post_api"
+        action="https://your-flask-api-endpoint.com/upload" // Replace with your actual API URL
         onChange={handleUpload}
         fileList={fileList}
+        accept=".zip" // Specify accepted file types (e.g., ZIP)
+        maxCount={1} // Limit to only one file
       >
-        <Button icon={<UploadOutlined />}>Upload PDF</Button>
+        <Button icon={<UploadOutlined />}>Upload ZIP</Button>
       </Upload>
     </div>
   );
