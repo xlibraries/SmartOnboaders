@@ -1,57 +1,68 @@
-import React, { useState } from 'react';
-import '../Style/PersonalDetails.css';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'; // If you're using axios for HTTP requests
+import '../Style/EmploymentHistory.css';
 
-const PersonalDetails: React.FC = () => {
-  // Sample data
-  const [data, setData] = useState({
-    "OrgName": "Tech Solutions Pvt. Ltd.",
-    "StartDate": "2010-07-01",
-    "EndDate": "2022-12-31"
-  });
+const EmploymentHistory: React.FC = () => {
+  const [employmentHistory, setEmploymentHistory] = useState<any[]>([]);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setData({ ...data, [event.target.name]: event.target.value });
-  };
+  useEffect(() => {
+    // Fetch data from JSON file
+    axios.get('data.json')
+      .then(response => {
+        // Assuming the JSON structure is as provided
+        const fetchedEmploymentHistory = response.data.EmploymentHistory;
+        setEmploymentHistory(fetchedEmploymentHistory);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []); // Empty dependency array means this effect runs only once after the initial render
 
-  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setData({ ...data, [event.target.name]: event.target.checked });
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>, index: number, field: string) => {
+    const updatedEmploymentHistory = [...employmentHistory];
+    updatedEmploymentHistory[index] = {
+      ...updatedEmploymentHistory[index],
+      [field]: event.target.value
+    };
+    setEmploymentHistory(updatedEmploymentHistory);
   };
 
   return (
-    <div className="personal-details">
+    <div className="employment-history">
       <h2 className='label'>Employment History</h2>
-      <div className="form-item">
-        <label>Orginazation Name:</label>
-        <input 
-          type="text" 
-          name="OrgName" 
-          value={data.OrgName} 
-          onChange={handleChange} 
-          className="input-field" 
-        />
-      </div>
-      <div className="form-item">
-        <label>Start Date:</label>
-        <input 
-          type="text" 
-          name="StartDate" 
-          value={data.StartDate} 
-          onChange={handleChange} 
-          className="input-field" 
-        />
-      </div>
-      <div className="form-item">
-        <label>End Date:</label>
-        <input 
-          type="text" 
-          name="EndDate" 
-          value={data.EndDate} 
-          onChange={handleChange} 
-          className="input-field" 
-        />
-      </div>
+      {employmentHistory.map((employment, index) => (
+        <div key={index} className="employment-entry">
+          <div className="form-item">
+            <label>Organization Name:</label>
+            <input 
+              type="text" 
+              value={employment.OrgName} 
+              onChange={(event) => handleChange(event, index, 'OrgName')} 
+              className="input-field" 
+            />
+          </div>
+          <div className="form-item">
+            <label>Start Date:</label>
+            <input 
+              type="text" 
+              value={employment.StartDate} 
+              onChange={(event) => handleChange(event, index, 'StartDate')} 
+              className="input-field" 
+            />
+          </div>
+          <div className="form-item">
+            <label>End Date:</label>
+            <input 
+              type="text" 
+              value={employment.EndDate} 
+              onChange={(event) => handleChange(event, index, 'EndDate')} 
+              className="input-field" 
+            />
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
 
-export default PersonalDetails;
+export default EmploymentHistory;

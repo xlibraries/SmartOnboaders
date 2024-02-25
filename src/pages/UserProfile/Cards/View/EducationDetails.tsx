@@ -1,88 +1,93 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'; // If you're using axios for HTTP requests
 import '../Style/EducationDetails.css';
 
 const EducationDetails: React.FC = () => {
-  // Sample data
-  const [data, setData] = useState({
-    "EducationQualification": "Master's in Computer Science",
-    "YearOfPassing": 2010,
-    "PercentageOrCGPA": 3.7,
-    "University": "Delhi University",
-    "Country": "India",
-    "State": "Delhi"
-  });
+  const [educationData, setEducationData] = useState<any[]>([]);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setData({ ...data, [event.target.name]: event.target.value });
-  };
+  useEffect(() => {
+    // Fetch data from JSON file
+    axios.get('data.json')
+      .then(response => {
+        // Assuming the JSON structure is as provided
+        const fetchedEducationData = response.data.EducationDetails;
+        setEducationData(fetchedEducationData);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []); // Empty dependency array means this effect runs only once after the initial render
 
-  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setData({ ...data, [event.target.name]: event.target.checked });
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>, index: number, field: string) => {
+    const updatedEducationData = [...educationData];
+    updatedEducationData[index] = {
+      ...updatedEducationData[index],
+      [field]: event.target.value
+    };
+    setEducationData(updatedEducationData);
   };
 
   return (
     <div className="personal-details">
       <h2 className='label'>Education Details</h2>
-      <div className="form-item">
-        <label>EducationQualification:</label>
-        <input 
-          type="text" 
-          name="EducationQualification" 
-          value={data.EducationQualification} 
-          onChange={handleChange} 
-          className="input-field" 
-        />
-      </div>
-      <div className="form-item">
-        <label>Year Of Passing:</label>
-        <input 
-          type="text" 
-          name="Year Of Passing" 
-          value={data.YearOfPassing} 
-          onChange={handleChange} 
-          className="input-field" 
-        />
-      </div>
-      <div className="form-item">
-        <label>PercentageOrCGPA:</label>
-        <input 
-          type="text" 
-          name="PercentageOrCGPA" 
-          value={data.PercentageOrCGPA} 
-          onChange={handleChange} 
-          className="input-field" 
-        />
-      </div>
-      <div className="form-item">
-        <label>University:</label>
-        <input 
-          type="text" 
-          name="University" 
-          value={data.University} 
-          onChange={handleChange} 
-          className="input-field" 
-        />
-      </div>
-      <div className="form-item">
-        <label>Country:</label>
-        <input 
-          type="text" 
-          name="Country" 
-          value={data.Country} 
-          onChange={handleChange} 
-          className="input-field" 
-        />
-      </div>
-      <div className="form-item">
-        <label>State:</label>
-        <input 
-          type="text" 
-          name="State" 
-          value={data.State} 
-          onChange={handleChange} 
-          className="input-field" 
-        />
-      </div>
+      {educationData.map((education, index) => (
+        <div key={index} className="education-entry">
+          <div className="form-item">
+            <label>Education Qualification:</label>
+            <input 
+              type="text" 
+              value={education.EducationQualification} 
+              onChange={(event) => handleChange(event, index, 'EducationQualification')} 
+              className="input-field" 
+            />
+          </div>
+          <div className="form-item">
+            <label>Year Of Passing:</label>
+            <input 
+              type="text" 
+              value={education.YearOfPassing} 
+              onChange={(event) => handleChange(event, index, 'YearOfPassing')} 
+              className="input-field" 
+            />
+          </div>
+          <div className="form-item">
+            <label>Percentage Or CGPA:</label>
+            <input 
+              type="text" 
+              value={education.PercentageOrCGPA} 
+              onChange={(event) => handleChange(event, index, 'PercentageOrCGPA')} 
+              className="input-field" 
+            />
+          </div>
+          <div className="form-item">
+            <label>University:</label>
+            <input 
+              type="text" 
+              value={education.University} 
+              onChange={(event) => handleChange(event, index, 'University')} 
+              className="input-field" 
+            />
+          </div>
+          <div className="form-item">
+            <label>Country:</label>
+            <input 
+              type="text" 
+              value={education.Country} 
+              onChange={(event) => handleChange(event, index, 'Country')} 
+              className="input-field" 
+            />
+          </div>
+          <div className="form-item">
+            <label>State:</label>
+            <input 
+              type="text" 
+              value={education.State} 
+              onChange={(event) => handleChange(event, index, 'State')} 
+              className="input-field" 
+            />
+          </div>
+        </div>
+      ))}
     </div>
   );
 };

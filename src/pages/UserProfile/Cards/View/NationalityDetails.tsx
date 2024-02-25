@@ -1,66 +1,75 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'; // If you're using axios for HTTP requests
 import '../Style/NationalityDetails.css';
 
 const NationalityDetails: React.FC = () => {
-  // Sample data
-  const [data, setData] = useState({
-    "PersonalDetailsID": "11234567876543",
-    "Nationality": "Indian",
-    "PAN": "ABCDE1234F",
-    "WorkAuthorization": "Valid work visa"
-  });
+  const [nationalityDetails, setNationalityDetails] = useState<any[]>([]);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setData({ ...data, [event.target.name]: event.target.value });
-  };
+  useEffect(() => {
+    // Fetch data from JSON file
+    axios.get('data.json')
+      .then(response => {
+        // Assuming the JSON structure is as provided
+        const fetchedNationalityDetails = response.data.NationalityDetails;
+        setNationalityDetails(fetchedNationalityDetails);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []); // Empty dependency array means this effect runs only once after the initial render
 
-  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setData({ ...data, [event.target.name]: event.target.checked });
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>, index: number, field: string) => {
+    const updatedNationalityDetails = [...nationalityDetails];
+    updatedNationalityDetails[index] = {
+      ...updatedNationalityDetails[index],
+      [field]: event.target.value
+    };
+    setNationalityDetails(updatedNationalityDetails);
   };
 
   return (
     <div className="nationality-details">
       <h2 className='label'>Nationality Details</h2>
-      <div className="form-item">
-        <label>Aadhar Number:</label>
-        <input
-          type="text"
-          name="Aadhar Number"
-          value={data.PersonalDetailsID}
-          onChange={handleChange}
-          className="input-field"
-        />
-      </div>
-      <div className="form-item">
-        <label>Nationality:</label>
-        <input
-          type="text"
-          name="Nationality"
-          value={data.Nationality}
-          onChange={handleChange}
-          className="input-field"
-        />
-      </div>
-      <div className="form-item">
-        <label>PAN Number:</label>
-        <input
-          type="text"
-          name="PAN Number"
-          value={data.PAN}
-          onChange={handleChange}
-          className="input-field"
-        />
-      </div>
-      <div className="form-item">
-        <label>Work Authorization:</label>
-        <input
-          type="text"
-          name="Work Authorization"
-          value={data.WorkAuthorization}
-          onChange={handleChange}
-          className="input-field"
-        />
-      </div>
+      {nationalityDetails.map((nationality, index) => (
+        <div key={index} className="nationality-entry">
+          <div className="form-item">
+            <label>Aadhar Number:</label>
+            <input 
+              type="text" 
+              value={nationality.PersonalDetailsID} 
+              onChange={(event) => handleChange(event, index, 'PersonalDetailsID')} 
+              className="input-field" 
+            />
+          </div>
+          <div className="form-item">
+            <label>Nationality:</label>
+            <input 
+              type="text" 
+              value={nationality.Nationality} 
+              onChange={(event) => handleChange(event, index, 'Nationality')} 
+              className="input-field" 
+            />
+          </div>
+          <div className="form-item">
+            <label>PAN Number:</label>
+            <input 
+              type="text" 
+              value={nationality.PAN} 
+              onChange={(event) => handleChange(event, index, 'PAN')} 
+              className="input-field" 
+            />
+          </div>
+          <div className="form-item">
+            <label>Work Authorization:</label>
+            <input 
+              type="text" 
+              value={nationality.WorkAuthorization} 
+              onChange={(event) => handleChange(event, index, 'WorkAuthorization')} 
+              className="input-field" 
+            />
+          </div>
+        </div>
+      ))}
     </div>
   );
 };

@@ -1,22 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'; // If you're using axios for HTTP requests
 import '../Style/Skills.css';
 
 const Skills: React.FC = () => {
-  // Sample data
   const [data, setData] = useState({
-    "PrimarySkill": "Java",
-    "SecondarySkill": "SQL",
-    "OtherSkills": "Spring Framework, Hibernate",
-    "DomainExpertise": "IT Services"
+    "PrimarySkill": "",
+    "SecondarySkill": "",
+    "OtherSkills": "",
+    "DomainExpertise": ""
   });
+
+  useEffect(() => {
+    // Fetch data from JSON file
+    axios.get('data.json')
+      .then(response => {
+        // Assuming the JSON structure is as provided
+        const skillsData = response.data.Skills[0]; // Assuming there's only one skill entry
+        setData(skillsData);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []); // Empty dependency array means this effect runs only once after the initial render
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setData({ ...data, [event.target.name]: event.target.value });
   };
 
-  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setData({ ...data, [event.target.name]: event.target.checked });
-  };
   return (
     <div className="skills">
       <h2 className='label'>Skills</h2>

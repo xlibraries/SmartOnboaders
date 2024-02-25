@@ -1,95 +1,121 @@
 {
-    "PersonalDetails": [
-      {
-        "ID": 1,
-        "FullNameAsPerAadharCard": "Rajesh Kumar Verma",
-        "MobNo": "9876543210",
-        "EmailID": "rajesh.verma@example.com",
-        "Gender": "Male",
-        "DateOfBirth": "1988-09-10",
-        "Age": 35,
-        "IsCurrentAddressSameAsPermanent": true
-      }
-    ],
-    "NationalityDetails": [
-      {
-        "ID": 1,
-        "PersonalDetailsID": 1,
-        "Citizenship": "Indian",
-        "Nationality": "Indian",
-        "PAN": "ABCDE1234F",
-        "WorkAuthorization": "Valid work visa"
-      }
-    ],
-    "AddressDetails": [
-      {
-        "ID": 1,
-        "PersonalDetailsID": 1,
-        "Country": "India",
-        "Address": "456 Nehru Nagar",
-        "City": "New Delhi",
-        "State": "Delhi",
-        "Pincode": "110001"
-      }
-    ],
-    "ProfessionalReferences": [
-      {
-        "ID": 1,
-        "PersonalDetailsID": 1,
-        "Name": "Sunita Sharma",
-        "PhoneNumber": "999-9876543",
-        "EmailID": "sunita.sharma@persistent.com"
-      }
-    ],
-    "EducationDetails": [
-      {
-        "ID": 1,
-        "PersonalDetailsID": 1,
-        "EducationQualification": "Master's in Computer Science",
-        "YearOfPassing": 2010,
-        "PercentageOrCGPA": 3.7,
-        "University": "Delhi University",
-        "Country": "India",
-        "State": "Delhi"
-      }
-    ],
-    "AdditionalQualifications": [
-      {
-        "ID": 1,
-        "PersonalDetailsID": 1,
-        "Title": "Certified Agile Practitioner",
-        "Institute": "Project Management Institute",
-        "Duration": "5 days",
-        "YearOfPassing": 2014,
-        "CertificateNumber": "CAP56789"
-      }
-    ],
-    "Skills": [
-      {
-        "ID": 1,
-        "PersonalDetailsID": 1,
-        "PrimarySkill": "Java",
-        "SecondarySkill": "SQL",
-        "OtherSkills": "Spring Framework, Hibernate",
-        "DomainExpertise": "IT Services"
-      }
-    ],
-    "EmploymentHistory": [
-      {
-        "ID": 1,
-        "PersonalDetailsID": 1,
-        "OrgName": "Tech Solutions Pvt. Ltd.",
-        "StartDate": "2010-07-01",
-        "EndDate": "2022-12-31"
-      }
-    ],
-    "AdditionalInformation": [
-      {
-        "ID": 1,
-        "PersonalDetailsID": 1,
-        "CareerAchievements": "Led successful ERP implementation",
-        "Comments": "Strong problem-solving skills"
-      }
-    ]
-  }
-  
+  "PersonalDetails": [
+    {
+      "ID": 1,
+      "FullNameAsPerAadharCard": "Tanishq Jena",
+      "MobNo": "",
+      "EmailID": "tanisha jena@persistent.com",
+      "Gender": "Male",
+      "DateOfBirth": "2001-03-19",
+      "Age": "",
+      "IsCurrentAddressSameAsPermanent": true
+    }
+  ],
+  "NationalityDetails": [
+    {
+      "ID": 1,
+      "PersonalDetailsID": 1,
+      "Citizenship": "Indian",
+      "Nationality": "Indian",
+      "PAN": "CIXPJ4850J",
+      "WorkAuthorization": ""
+    }
+  ],
+  "AddressDetails": [
+    {
+      "ID": 1,
+      "PersonalDetailsID": 1,
+      "Country": "India",
+      "Address": "C/O Manoj Kumar Jena, Survey No. 84/5, Shiv Colony, -, Near Patil Motors, Pawar Vasti, Pune City, Pune, Maharashtra - 411047",
+      "City": "Pune City",
+      "State": "Maharashtra",
+      "Pincode": "411047"
+    }
+  ],
+  "ProfessionalReferences": [
+    {
+      "ID": 1,
+      "PersonalDetailsID": 1,
+      "Name": "Sunita Sharma",
+      "PhoneNumber": "999-9876543",
+      "EmailID": "sunita.sharma@persistent.com"
+    }
+  ],
+  "EducationDetails": [
+    {
+      "ID": 1,
+      "PersonalDetailsID": 1,
+      "EducationQualification": "Bachelor of Engineering",
+      "YearOfPassing": 2022,
+      "PercentageOrCGPA": 9.39,
+      "University": "Dr. D. Y. Patil Institute of Technology, Pimpri, Pune",
+      "Country": "India",
+      "State": "Maharashtra"
+    },
+    {
+      "ID": 2,
+      "PersonalDetailsID": 1,
+      "EducationQualification": "XII",
+      "YearOfPassing": 2018,
+      "PercentageOrCGPA": "",
+      "University": "Kendriya Vidyalaya No.1 1, AFS NPA, Pune",
+      "Country": "India",
+      "State": "Maharashtra"
+    },
+    {
+      "ID": 3,
+      "PersonalDetailsID": 1,
+      "EducationQualification": "X",
+      "YearOfPassing": 2016,
+      "PercentageOrCGPA": "",
+      "University": "Kendriya Vidyalaya No.2, AFS Akash Nagar, Pune",
+      "Country": "India",
+      "State": "Maharashtra"
+    }
+  ],
+  "AdditionalQualifications": [
+    {
+      "ID": 1,
+      "PersonalDetailsID": 1,
+      "Title": "Certified Agile Practitioner",
+      "Institute": "Project Management Institute",
+      "Duration": "5 days",
+      "YearOfPassing": 2014,
+      "CertificateNumber": "CAP56789"
+    }
+  ],
+  "Skills": [
+    {
+      "ID": 1,
+      "PersonalDetailsID": 1,
+      "PrimarySkill": "Python",
+      "SecondarySkill": "SQL",
+      "OtherSkills": "Spring Framework, Hibernate, Deep Learning, Data Science, NLP, Flask, Streamlit, LangChain, AzureOpenAI, Oracle SQL, Azure AI Vision Tools, Jupyter Notebook, Anaconda Navigator, VSCode, PyCharm, Python ML, Django, RAG, Postgres SQL, Bot Builder, MS SQL, Snowflake, Bar Plots, Pie Charts, Web Application",
+      "DomainExpertise": "IT Services"
+    }
+  ],
+  "EmploymentHistory": [
+    {
+      "ID": 1,
+      "PersonalDetailsID": 1,
+      "OrgName": "PERSISTENT SYSTEMS LIMITED",
+      "StartDate": "2022-07-01",
+      "EndDate": "Present"
+    },
+    {
+      "ID": 2,
+      "PersonalDetailsID": 1,
+      "OrgName": "PERSISTENT SYSTEMS LIMITED",
+      "StartDate": "2022-02-01",
+      "EndDate": "2022-07-01"
+    }
+  ],
+  "AdditionalInformation": [
+    {
+      "ID": 1,
+      "PersonalDetailsID": 1,
+      "CareerAchievements": "",
+      "Comments": "Strong problem-solving skills"
+    }
+  ]
+}

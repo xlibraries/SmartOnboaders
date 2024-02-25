@@ -1,103 +1,102 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'; // If you're using axios for HTTP requests
 import '../Style/PersonalDetails.css';
 
 const PersonalDetails: React.FC = () => {
-  // Sample data
-  const [data, setData] = useState({
-    "FirstName": "Rajesh",
-    "MiddleName": "Kumar",
-    "LastName": "Verma",
-    "FullNameAsPerAadharCard": "Rajesh Kumar Verma",
-    "MobNo": "9876543210",
-    "EmailID": "rajesh.verma@example.com",
-    "Gender": "Male",
-    "DateOfBirth": "1988-09-10",
-    "Age": 35,
-    "MaritalStatus": "Married",
-    "IsCurrentAddressSameAsPermanent": true
-  });
+  const [personalDetails, setPersonalDetails] = useState<any[]>([]);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setData({ ...data, [event.target.name]: event.target.value });
-  };
+  useEffect(() => {
+    // Fetch data from JSON file
+    axios.get('data.json')
+      .then(response => {
+        // Assuming the JSON structure is as provided
+        const fetchedPersonalDetails = response.data.PersonalDetails;
+        setPersonalDetails(fetchedPersonalDetails);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []); // Empty dependency array means this effect runs only once after the initial render
 
-  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setData({ ...data, [event.target.name]: event.target.checked });
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>, index: number, field: string) => {
+    const updatedPersonalDetails = [...personalDetails];
+    updatedPersonalDetails[index] = {
+      ...updatedPersonalDetails[index],
+      [field]: event.target.value
+    };
+    setPersonalDetails(updatedPersonalDetails);
   };
 
   return (
     <div className="personal-details">
       <h2 className='label'>Personal Details</h2>
-      <div className="form-item">
-        <label>Full Name as per Aadhar Card:</label>
-        <input 
-          type="text" 
-          name="FullNameAsPerAadharCard" 
-          value={data.FullNameAsPerAadharCard} 
-          onChange={handleChange} 
-          className="input-field" 
-        />
-      </div>
-      <div className="form-item">
-        <label>Primary Mobile Number:</label>
-        <input 
-          type="text" 
-          name="MobNo" 
-          value={data.MobNo} 
-          onChange={handleChange} 
-          className="input-field" 
-        />
-      </div>
-      <div className="form-item">
-        <label>Email ID:</label>
-        <input 
-          type="text" 
-          name="EmailID" 
-          value={data.EmailID} 
-          onChange={handleChange} 
-          className="input-field" 
-        />
-      </div>
-      <div className="form-item">
-        <label>Gender:</label>
-        <input 
-          type="text" 
-          name="Gender" 
-          value={data.Gender} 
-          onChange={handleChange} 
-          className="input-field" 
-        />
-      </div>
-      <div className="form-item">
-        <label>Date of Birth:</label>
-        <input 
-          type="text" 
-          name="DateOfBirth" 
-          value={data.DateOfBirth} 
-          onChange={handleChange} 
-          className="input-field" 
-        />
-      </div>
-      <div className="form-item">
-        <label>Age:</label>
-        <input 
-          type="text" 
-          name="Age" 
-          value={data.Age} 
-          onChange={handleChange} 
-          className="input-field" 
-        />
-      </div>
-      <div className="form-item">
-        <label>Marital Status:</label>
-        <input 
-          type="text" 
-          name="MaritalStatus" 
-          value={data.MaritalStatus} 
-          onChange={handleChange} 
-          className="input-field" 
-        />
-      </div>
+      {personalDetails.map((details, index) => (
+        <div key={index} className="personal-details-entry">
+          <div className="form-item">
+            <label>Full Name as per Aadhar Card:</label>
+            <input 
+              type="text" 
+              value={details.FullNameAsPerAadharCard} 
+              onChange={(event) => handleChange(event, index, 'FullNameAsPerAadharCard')} 
+              className="input-field" 
+            />
+          </div>
+          <div className="form-item">
+            <label>Primary Mobile Number:</label>
+            <input 
+              type="text" 
+              value={details.MobNo} 
+              onChange={(event) => handleChange(event, index, 'MobNo')} 
+              className="input-field" 
+            />
+          </div>
+          <div className="form-item">
+            <label>Email ID:</label>
+            <input 
+              type="text" 
+              value={details.EmailID} 
+              onChange={(event) => handleChange(event, index, 'EmailID')} 
+              className="input-field" 
+            />
+          </div>
+          <div className="form-item">
+            <label>Gender:</label>
+            <input 
+              type="text" 
+              value={details.Gender} 
+              onChange={(event) => handleChange(event, index, 'Gender')} 
+              className="input-field" 
+            />
+          </div>
+          <div className="form-item">
+            <label>Date of Birth:</label>
+            <input 
+              type="text" 
+              value={details.DateOfBirth} 
+              onChange={(event) => handleChange(event, index, 'DateOfBirth')} 
+              className="input-field" 
+            />
+          </div>
+          <div className="form-item">
+            <label>Age:</label>
+            <input 
+              type="text" 
+              value={details.Age} 
+              onChange={(event) => handleChange(event, index, 'Age')} 
+              className="input-field" 
+            />
+          </div>
+          <div className="form-item">
+            <label>Marital Status:</label>
+            <input 
+              type="text" 
+              value={details.MaritalStatus} 
+              onChange={(event) => handleChange(event, index, 'MaritalStatus')} 
+              className="input-field" 
+            />
+          </div>
+        </div>
+      ))}
     </div>
   );
 };

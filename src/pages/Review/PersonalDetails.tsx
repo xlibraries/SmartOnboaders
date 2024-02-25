@@ -9,10 +9,24 @@ const PersonalDetails: React.FC = () => {
   const [jsonData, setJsonData] = useState<{ [key: string]: any } | null>(null);
 
   useEffect(() => {
-    fetch('/data.json')
+    let url = '/data.json'; // Default URL
+
+    const timer = setTimeout(() => {
+      url = '/Alex.json'; // After 20 seconds, switch URL
+      // Fetch the data again with the updated URL
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => setJsonData(data))
+        .catch((error) => console.error('Error fetching data:', error));
+    }, 20000);
+
+    fetch(url)
       .then((response) => response.json())
       .then((data) => setJsonData(data))
       .catch((error) => console.error('Error fetching data:', error));
+
+    // Clean up the timer
+    return () => clearTimeout(timer);
   }, []);
 
   return (

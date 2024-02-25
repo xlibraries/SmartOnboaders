@@ -1,44 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'; // If you're using axios for HTTP requests
 import '../Style/AdditionalInformation.css';
 
 const AdditionalInformation: React.FC = () => {
-  // Sample data
-  const [data, setData] = useState({
-    "CareerAchievements": "Led successful ERP implementation",
-    "Comments": "Strong problem-solving skills"
-  });
+  const [additionalInformation, setAdditionalInformation] = useState<any[]>([]);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setData({ ...data, [event.target.name]: event.target.value });
-  };
+  useEffect(() => {
+    // Fetch data from JSON file
+    axios.get('data.json')
+      .then(response => {
+        // Assuming the JSON structure is as provided
+        const fetchedAdditionalInformation = response.data.AdditionalInformation;
+        setAdditionalInformation(fetchedAdditionalInformation);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []); // Empty dependency array means this effect runs only once after the initial render
 
-  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setData({ ...data, [event.target.name]: event.target.checked });
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>, index: number, field: string) => {
+    const updatedAdditionalInformation = [...additionalInformation];
+    updatedAdditionalInformation[index] = {
+      ...updatedAdditionalInformation[index],
+      [field]: event.target.value
+    };
+    setAdditionalInformation(updatedAdditionalInformation);
   };
 
   return (
-    <div className="personal-details">
-      <h2 className='label'>Additional Informations</h2>
-      <div className="form-item">
-        <label>CareerAchievements:</label>
-        <input 
-          type="text" 
-          name="CareerAchievements" 
-          value={data.CareerAchievements} 
-          onChange={handleChange} 
-          className="input-field" 
-        />
-      </div>
-      <div className="form-item">
-        <label>Comments:</label>
-        <input 
-          type="text" 
-          name="Comments" 
-          value={data.Comments} 
-          onChange={handleChange} 
-          className="input-field" 
-        />
-      </div>
+    <div className="additional-information">
+      <h2 className='label'>Additional Information</h2>
+      {additionalInformation.map((info, index) => (
+        <div key={index} className="additional-info-entry">
+          <div className="form-item">
+            <label>Career Achievements:</label>
+            <input 
+              type="text" 
+              value={info.CareerAchievements} 
+              onChange={(event) => handleChange(event, index, 'CareerAchievements')} 
+              className="input-field" 
+            />
+          </div>
+          <div className="form-item">
+            <label>Comments:</label>
+            <input 
+              type="text" 
+              value={info.Comments} 
+              onChange={(event) => handleChange(event, index, 'Comments')} 
+              className="input-field" 
+            />
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
