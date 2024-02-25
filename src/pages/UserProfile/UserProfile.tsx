@@ -46,6 +46,7 @@ const UserProfile = () => {
     <Layout>
       <Header className="header">
         <div className="logo" />
+        <Button type="primary" style={{ float: 'right', backgroundColor: 'white', borderColor: 'white', color: 'black' }}>Submit</Button>
       </Header>
       <Layout>
         <Sider width={200} className="site-layout-background">

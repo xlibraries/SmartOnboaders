@@ -4,6 +4,7 @@ import Upload from './pages/Home/Upload';
 import PersonalDetailsForm from './pages/Review/PersonalDetails';
 import UserProfile from './pages/UserProfile/UserProfile';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Completed from './pages/Completed/Completed';
 
 export default function App() {
     return (
@@ -13,6 +14,7 @@ export default function App() {
                 <Route path="/home" element={<Upload />} />
                 <Route path="/review" element={<PersonalDetailsForm />} />
                 <Route path='/user-profile' element={<UserProfile />} />
+                <Route path="/completed" element={<Completed />} />
             </Routes>
         </Router>
     );
